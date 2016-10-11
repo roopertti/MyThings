@@ -1,0 +1,128 @@
+<h1>My Things</h1>
+<div id="map"></div>
+<section class="get">
+	<h3>Device List</h3>
+	<a href="/get-data">Update List</a>
+	<div>
+		{{# each items}}
+			<article class="item">
+				<div>Name: {{ this.name }}</div>
+				<div>Description: {{ this.description }}</div>
+				<div>Latitude: {{ this.latitude }}</div>
+				<div>Longitude: {{ this.longitude }}</div>
+				<div>ID: {{ this._id }}</div>
+			</article>
+		{{/each}}
+	</div>
+</section>
+<section class="insert">
+	<h3>Add device</h3>
+	<form action="/insert" method="post">
+		<div class="input">
+			<label for="name">Name</label>
+			<input type="text" id="name" name="name">
+		</div>
+		<div class="input">
+			<label for="description">Description</label>
+			<input type="text" id="description" name="description">
+		</div>
+		<div class="input">
+			<label for="latitude">Latitude</label>
+			<input type="text" id="latitude" name="latitude">
+		</div>
+		<div class="input">
+			<label for="longitude">Longitude</label>
+			<input type="text" id="longitude" name="longitude">
+		</div>
+		<button type="submit">Add</button>
+	</form>	
+</section>
+<section class="update">
+	<h3>Update device</h3>
+	<form action="/update" method="post">
+		<div class="input">
+			<label for="id">ID</label>
+			<input type="text" id="id" name="id">
+		</div>
+		<div class="input">
+			<label for="name">Name</label>
+			<input type="text" id="name" name="name">
+		</div>
+		<div class="input">
+			<label for="description">Description</label>
+			<input type="text" id="description" name="description">
+		</div>
+		<div class="input">
+			<label for="latitude">Latitude</label>
+			<input type="text" id="latitude" name="latitude">
+		</div>
+		<div class="input">
+			<label for="longitude">Longitude</label>
+			<input type="text" id="longitude" name="longitude">
+		</div>
+		<button type="submit">Update</button>
+	</form>
+</section>
+<section>
+	<h3>Delete device</h3>
+	<form action="/delete" method="post">
+        <div class="input">
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id">
+        </div>
+        <button type="submit">Delete</button>
+	</form>
+</section>
+<section>
+	<h3>Set marker</h3>
+	<div class="input">
+		<label for="latitude">Latitude</label>
+		<input type="text" id="lat" name="lat">
+		<label for="longitude">Longitude</label>
+		<input type="text" id="lng" name="lng">
+		<button onclick="TestMarker()">Add marker</button>
+		<button onclick="initMap()">Reset Map</button>
+	</div>
+</section>
+
+<script type="text/javascript">
+
+    
+    var map;
+    //Generoidaan kartta
+	function initMap() {
+	    map = new google.maps.Map(document.getElementById('map'), {
+	      center: {lat: -34.397, lng: 150.644},
+	      zoom: 1
+	    });
+	}
+
+
+    //Lisätään merkki
+    function addMarker(location) {
+        marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+    }
+
+    //Asetetaan latitude ja longitude
+    function TestMarker() {
+		var latitude = document.getElementById('lat').value;
+		var longitude = document.getElementById('lng').value;
+       	Location = new google.maps.LatLng(latitude, longitude);
+       	addMarker(Location);
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key= AIzaSyDVPO3BFWcVBOouMG4NvRpwwvt4H-ezubc&callback=initMap"
+async defer></script>
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+
+
+
+
+
+
+
+
