@@ -1,3 +1,3 @@
-Sovellus käynnistetään mythings-hakemistossa komennolla: npm start.
+Sovellus käynnistetään mythings-hakemistossa komennolla: ```npm start```
 
-Vaatii paikallisen MongoDB-tietokantapalvelimen.
+MongoDB käynnistetään komennolla ```mongod --dbpath [data-hakemiston polku]```
